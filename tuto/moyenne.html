@@ -43,7 +43,13 @@
         student.average = avg(student.notes);
       }
 
-      top;
+      const compareNotes = (a, b) => {
+        return b.average - a.average;
+      };
+
+      students.sort(compareNotes);
+
+      console.log(students[0].name, students[1].name, students[2].name);
     </script>
   </body>
 </html>
