@@ -7,39 +7,71 @@
   </head>
   <body>
     <script>
-      class Rectangle {
-        constructor(h, l) {
-          this.l = l;
-          this.h = h;
+      class Book {
+        constructor(titre, nbrePage) {
+          this.titre = titre;
+          this.nbrePage = nbrePage;
+          this._page = 1;
         }
 
-        get perimeter() {
-          return 2 * (this.l + this.h);
+        get page() {
+          return this._page;
         }
 
-        get isValid() {
-          return this.h > 0 && this.l > 0;
+        nextPage() {
+          if (this._page < this.nbrePage) {
+            this._page++;
+          }
         }
 
-        isBiggerThan(rectangle) {
-          return this.perimeter > rectangle.perimeter;
-        }
-      }
-
-      class Square extends Rectangle {
-        constructor(c) {
-          super(c, c);
+        close() {
+          this._page = 1;
         }
       }
 
-      const r = new Rectangle(10, 20);
-      console.log(r.perimeter);
-      console.log(r.isValid);
-      const r2 = new Rectangle(-10, 20);
-      console.log(r2.isValid);
-      const c = new Square(10);
-      console.log(c.perimeter);
-      console.log(c.isBiggerThan(r));
+      class Library {
+        constructor() {
+          this.books = [];
+        }
+
+        addBook(book) {
+          this.books.push(book);
+        }
+
+        addBooks(books) {
+          for (let book of books) {
+            this.books.push(book);
+          }
+        }
+
+        findBooksByLetter(letter) {
+          const booksFound = this.books.filter((book) =>
+            book.titre.toLowerCase().startsWith(letter.toLowerCase())
+          );
+
+          for (let book of booksFound) {
+            console.log(book.titre);
+          }
+        }
+      }
+
+      const b = new Book("Le Seigneur des anneaux", 200);
+      console.log(b.page);
+      b.nextPage();
+      console.log(b.page);
+      b.close();
+      console.log(b.page);
+
+      const l = new Library();
+      l.addBook(b);
+      l.addBooks([
+        new Book("Ready player one", 100),
+        new Book("Oui-oui", 10),
+        new Book("Sillage", 50),
+        new Book("Sea Lion", 20),
+      ]);
+
+      l.findBooksByLetter("S");
     </script>
   </body>
 </html>
