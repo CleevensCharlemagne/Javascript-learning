@@ -50,7 +50,10 @@
       students.sort(compareNotes);
 
       const formatStudent = (student) => {
-        return `${student.name} avec une moyenne de ${student.average}`;
+        return `${student.name} avec une moyenne de ${student.average}
+          Note maximale: ${Math.max(
+            ...student.notes
+          )} | Note minimale: ${Math.min(...student.notes)}\n`;
       };
 
       console.log(`Top trois etudiants:
