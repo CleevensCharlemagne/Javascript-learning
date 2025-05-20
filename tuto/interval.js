@@ -18,3 +18,14 @@ function decompte(valeur) {
       }
     }, 1000);
   }
+
+function decompte2(n){
+
+    console.log(n);
+    if (n === 0){
+        return;
+    }
+    setTimeout(()=>{
+        decompte2(n-1)
+    }, 1000);
+}
