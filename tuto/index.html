@@ -7,15 +7,18 @@
   </head>
   <body>
     <script>
-      count = 5;
-      const t = setInterval(() => {
-        console.log(`Hi guys!!!`);
-        count--;
+      function decompte(valeur) {
+        const t = setInterval(() => {
+          console.log(valeur);
+          valeur--;
 
-        if (count === 0) {
-          clearInterval(t);
-        }
-      }, 1000);
+          if (valeur === -1) {
+            clearInterval(t);
+          }
+        }, 1000);
+      }
+
+      decompte(3);
     </script>
   </body>
 </html>
