@@ -7,3 +7,14 @@ const t = setInterval(() => {
         clearInterval(t);
     }
 }, 1000);
+
+function decompte(valeur) {
+    const t = setInterval(() => {
+      console.log(valeur);
+      valeur--;
+
+      if (valeur === -1) {
+        clearInterval(t);
+      }
+    }, 1000);
+  }
