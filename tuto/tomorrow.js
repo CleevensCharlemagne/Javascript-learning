@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      function addDays(date, days) {
+function addDays(date, days) {
         const result = new Date(date); // on crée une copie de la date
         result.setDate(result.getDate() + days); // on ajoute les jours
         return result; // on renvoie un objet Date
@@ -33,12 +24,10 @@
 
         return newDate;
       }
-
+      
       const today = new Date();
       const tomorrow = addDays(today, 1);
       const future = addInterval(today, 3, MONTHS);
 
+      console.log(tomorrow.toDateString());
       console.log(future.toDateString());
-    </script>
-  </body>
-</html>
