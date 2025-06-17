@@ -35,43 +35,44 @@ async function loadTodos() {
   }
 }
 
-function displayTodos(todos) {
+function displayTodos(todos, filter = "all") {
   const todoListElement = document.querySelector("ul.list-group");
   todoListElement.innerHTML = ""; // On vide la liste avant d’ajouter
 
-  todos.forEach(todo => {
-    // Création du <li>
+  // Filtrage selon le bouton
+  const filteredTodos = todos.filter(todo => {
+    if (filter === "all") return true;
+    if (filter === "todo") return !todo.completed;
+    if (filter === "done") return todo.completed;
+  });
+
+  // Affichage des tâches filtrées
+  filteredTodos.forEach(todo => {
     const li = document.createElement("li");
     li.className = "todo list-group-item d-flex align-items-center";
 
-    // Création de la checkbox <input>
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.className = "form-check-input";
     checkbox.id = "todo-" + todo.id;
-    checkbox.checked = todo.completed; // coche si déjà fait
+    checkbox.checked = todo.completed;
 
-    // Création du label pour la checkbox (titre)
     const label = document.createElement("label");
     label.className = "ms-2 form-check-label";
     label.setAttribute("for", checkbox.id);
-    label.textContent = todo.title; // titre dynamique
+    label.textContent = todo.title;
 
-    // Création du label bouton supprimer
     const deleteLabel = document.createElement("label");
     deleteLabel.className = "ms-auto btn btn-danger btn-sm";
 
-    // Création de l'icône corbeille
     const icon = document.createElement("i");
     icon.className = "bi-trash";
 
-    // Assemblage des éléments
     deleteLabel.appendChild(icon);
     li.appendChild(checkbox);
     li.appendChild(label);
     li.appendChild(deleteLabel);
 
-    // Ajout du <li> dans la liste
     todoListElement.appendChild(li);
   });
 }
@@ -81,3 +82,19 @@ function displayTodos(todos) {
 document.addEventListener("DOMContentLoaded", () => {
   loadTodos();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const filterButtons = document.querySelectorAll("[data-filter]");
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const filter = button.getAttribute("data-filter");
+      displayTodos(data, filter);
+
+      // Met à jour l'état "active" des boutons
+      filterButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+    });
+  });
+});
+
