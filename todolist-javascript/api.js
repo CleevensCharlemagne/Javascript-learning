@@ -48,33 +48,43 @@ function displayTodos(todos, filter = "all") {
 
   // Affichage des tâches filtrées
   filteredTodos.forEach(todo => {
-    const li = document.createElement("li");
-    li.className = "todo list-group-item d-flex align-items-center";
+  const li = document.createElement("li");
+  li.className = "todo list-group-item d-flex align-items-center";
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.className = "form-check-input";
-    checkbox.id = "todo-" + todo.id;
-    checkbox.checked = todo.completed;
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.className = "form-check-input";
+  checkbox.id = "todo-" + todo.id;
+  checkbox.checked = todo.completed;
 
-    const label = document.createElement("label");
-    label.className = "ms-2 form-check-label";
-    label.setAttribute("for", checkbox.id);
-    label.textContent = todo.title;
+  const label = document.createElement("label");
+  label.className = "ms-2 form-check-label";
+  label.setAttribute("for", checkbox.id);
+  label.textContent = todo.title;
 
-    const deleteLabel = document.createElement("label");
-    deleteLabel.className = "ms-auto btn btn-danger btn-sm";
+  const deleteLabel = document.createElement("label");
+  deleteLabel.className = "ms-auto btn btn-danger btn-sm";
+  deleteLabel.style.cursor = "pointer"; // Optionnel : curseur main
 
-    const icon = document.createElement("i");
-    icon.className = "bi-trash";
+  const icon = document.createElement("i");
+  icon.className = "bi-trash";
 
-    deleteLabel.appendChild(icon);
-    li.appendChild(checkbox);
-    li.appendChild(label);
-    li.appendChild(deleteLabel);
+  // ⚠️ Événement : supprimer la tâche
+  deleteLabel.addEventListener("click", () => {
+    // Supprimer la tâche dans le tableau `data`
+    data = data.filter(t => t.id !== todo.id);
 
-    todoListElement.appendChild(li);
+    // Réafficher la liste (avec le même filtre)
+    displayTodos(data, filter);
   });
+
+  deleteLabel.appendChild(icon);
+  li.appendChild(checkbox);
+  li.appendChild(label);
+  li.appendChild(deleteLabel);
+  todoListElement.appendChild(li);
+});
+
 }
 
 
@@ -97,4 +107,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("todo-form");
+  const input = form.querySelector("input[name='title']");
+  const todoList = document.querySelector("ul.list-group");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+
+    const text = input.value.trim();
+    if (text === "") return;
+
+    // Crée l'élément <li>
+    const li = document.createElement("li");
+    li.className = "todo list-group-item d-flex align-items-center";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "form-check-input";
+
+    const label = document.createElement("label");
+    label.className = "ms-2 form-check-label";
+    label.textContent = text;
+
+    const deleteBtn = document.createElement("label");
+    deleteBtn.className = "ms-auto btn btn-danger btn-sm";
+    const icon = document.createElement("i");
+    icon.className = "bi-trash";
+    deleteBtn.appendChild(icon);
+
+    li.appendChild(checkbox);
+    li.appendChild(label);
+    li.appendChild(deleteBtn);
+
+    todoList.appendChild(li);
+
+    input.value = ""; // Vide le champ après ajout
+  });
+});
+
 

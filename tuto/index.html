@@ -4,11 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="DOM_practice"></script>
+    <style>
+      .spoiler {
+        background-color: #000;
+        color: #000;
+        cursor: pointer;
+      }
+
+      .spoiler::selection {
+        color: rgba(0, 0, 0, 0);
+      }
+    </style>
   </head>
   <body>
-    <div id="LastPosts">
-      <p>Place holder</p>
-    </div>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis distinctio
+      dicta harum voluptate, quod autem laudantium!
+      <span class="spoiler"
+        >Praesentium nihil ducimus sit unde ipsa eveniet</span
+      >, quo, dolorum sequi optio, eum quaerat. Accusantium. Quos delectus
+      officiis voluptate amet?
+      <span class="spoiler">Repudiandae distinctio nobis velit libero</span>
+      necessitatibus dolorem, ea sint iusto delectus impedit eius? Beatae
+      dolorum facilis perferendis nisi voluptas enim sint consequuntur quae
+      consectetur sequi. Impedit ipsum nesciunt sint vitae! Corrupti velit
+      veritatis provident ipsa ratione voluptate, necessitatibus perferendis
+      delectus neque animi nulla excepturi sunt quasi quibusdam, sed ut! Dicta
+      optio in ab qui porro.
+    </p>
+    <script src="spoiler.js"></script>
   </body>
 </html>
