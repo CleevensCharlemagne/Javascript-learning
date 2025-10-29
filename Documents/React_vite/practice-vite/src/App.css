@@ -8,6 +8,49 @@ body{
   margin: 0;
 }
 
+.contacts-container {
+  display: flex;         /* side by side */
+  flex-wrap: wrap;       /* allows wrapping on smaller screens */
+  gap: 20px;             /* space between cards */
+  justify-content: center; /* center horizontally */
+  padding: 20px;
+}
+
+.contact-card {
+  overflow: hidden;
+  padding: 0.7rem 0.7rem 1.5rem;
+  background-color: whitesmoke;
+  border-radius: 5%;
+  max-width: 250px;      /* optional, prevent cards from getting too wide */
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.contact-card img {
+  width: 230px;
+  height: 153px;
+  border-radius: 5%;
+}
+
+.contact-card h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.contact-info {
+  display: flex;
+  gap: 10px
+}
+
+.contact-info img {
+  width: 25px;
+  height: 25px;
+}
+
+.contact-info p {
+  font-size: 1rem;
+}
+
 header {
   background-color: #4a90e2;
   padding: 1rem 0;

@@ -7,9 +7,13 @@ import Contact from './Contact'
 
 function App() {
   return (
-    <>
-      <Header />
-    </>
+    <div className='contacts-container'>
+      <Contact />
+      <Contact />
+      <Contact />
+      <Contact />
+      
+    </div>
   )
 }
 
