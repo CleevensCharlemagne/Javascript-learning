@@ -1,15 +1,18 @@
-function Contact({img, name, phone, email}){
+import phone from "../images/phone.png"
+import email from "../images/email.png"
+
+function Contact(props){
     return(
         <article className="contact-card">
-            <img src={img} alt="contact image" />
-            <h3>{name}</h3>
+            <img src={props.img} alt="contact image" />
+            <h3>{props.name}</h3>
             <div className="contact-info">
-                <img src="../images/phone.png" alt="phone icon" />
-                <p>{phone}</p>
+                <img src={phone} alt="phone icon" />
+                <p>{props.phone}</p>
             </div>
             <div className="contact-info">
-                <img src="../images/email.png" alt="email icon" />
-                <p>{email}</p>
+                <img src={email} alt="email icon" />
+                <p>{props.email}</p>
             </div>
         </article>
     )

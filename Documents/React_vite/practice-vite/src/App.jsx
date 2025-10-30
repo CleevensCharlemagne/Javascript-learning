@@ -4,30 +4,34 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import './Header'
 import Contact from './Contact'
+import cat from "../images/cat.jpg"
+import dog from "../images/dog.jpg"
+import rabbit from "../images/rabbit.jpg"
+import butterfly from "../images/butterfly.jpg"
 
 function App() {
   return (
     <div className='contacts-container'>
       <Contact 
-        img="../images/cat.jpg"
+        img={cat}
         name="Mr. Whiskerson"
         phone="(509) 3434-3430"
         email="whiskerson@email.com"
       />
       <Contact 
-        img="../images/dog.jpg"
+        img={dog}
         name="Fluffykins"
         phone="(509) 3142-3430"
         email="fluff@email.com"
       />
       <Contact 
-        img="../images/rabbit.jpg"
+        img={rabbit}
         name="Felix"
         phone="(509) 4343-3430"
         email="felix@email.com"
       />
       <Contact 
-        img="../images/butterfly.jpg"
+        img={butterfly}
         name="Pumpkin"
         phone="(509) 3232-3430"
         email="pumpkin@email.com"
